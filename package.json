@@ -1,0 +1,24 @@
+{
+  "name": "world-wide-music",
+  "version": "1.0.0",
+  "description": "Integrate all music services into one",
+  "main": "server.js",
+  "repository": "https://github.com/Rarfael/world-wide-music.git",
+  "author": "Leonardo Cunha e Rafael Godoy",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
+  }
+}
