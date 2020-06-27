@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 
 const PORT = process.env.PORT || 3001;
-
 const CLIENT_ID = 'CLIENT_ID';
 const CLIENT_SECRET = 'CLIENT_SECRET';
 const REDIRECT_URL = 'your_call_back_url';
@@ -16,7 +15,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  res.redirect(`${apiURL}response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&scope=user-read-private%20user-read-email&state=34fFs29kd09`);
+  res.redirect(
+    `${apiURL}response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&scope=user-read-private%20user-read-email&state=34fFs29kd09`
+  );
 });
 
 app.get('/callback', (req, res) => {
