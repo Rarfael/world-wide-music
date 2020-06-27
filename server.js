@@ -1,12 +1,14 @@
 const express = require('express');
+require('dotenv').config();
 
 const app = express();
 
 const PORT = process.env.PORT || 3001;
-const CLIENT_ID = 'CLIENT_ID';
-const CLIENT_SECRET = 'CLIENT_SECRET';
-const REDIRECT_URL = 'your_call_back_url';
 
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+
+const REDIRECT_URL = 'http://localhost:3001/callback';
 const apiURL = 'https://accounts.spotify.com/authorize?';
 
 app.get('/', (req, res) => {
