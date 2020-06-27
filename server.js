@@ -1,14 +1,16 @@
 const express = require('express');
 require('dotenv').config();
 
+const fetch = require('node-fetch');
+
 const app = express();
 
 const PORT = process.env.PORT || 3001;
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-
-const REDIRECT_URL = 'http://localhost:3001/callback';
+const baseUrl = `http://localhost:${PORT}`;
+const REDIRECT_URL = `${baseUrl}/callback`;
 const apiURL = 'https://accounts.spotify.com/authorize?';
 const request_access_uri = 'https://accounts.spotify.com/api/token';
 
@@ -25,12 +27,27 @@ app.get('/login', (req, res) => {
 
 app.get('/callback', (req, res) => {
   const { code, state } = req.query;
+  console.log('CALLBACK CALLED');
   if (code === 'access_denied') {
     return res.status(403).json({
       status: 'access_denied',
     });
   }
-  res.redirect('/');
+  console.log('PROCEED TO REQUEST');
+  fetch(request_access_uri, {
+    method: 'POST',
+    body: {
+      grant_type: 'authorization_code',
+      code,
+      redirect_uri: REDIRECT_URL,
+    },
+  })
+    .then((res) => console.log(res.body))
+    .catch((error) => {
+      throw error;
+    });
+
+  console.log('É NOIS');
 });
 
 app.listen(PORT, () => {
